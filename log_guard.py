@@ -1,12 +1,25 @@
 import subprocess
 import re
 import os
-from datetime import datetime
+import time
 
-log_input = input("Enter log message to analyze: ")
+LOG_FILES = [
+    "/var/log/secure",     # For RHEL/Fedora/Arch
+    "/var/log/auth.log"    # For Debian/Ubuntu
+]
 
-# Prompt to the AI
-prompt = f"""
+def follow(file_path):
+    with open(file_path, "r") as f:
+        f.seek(0, os.SEEK_END)
+        while True:
+            line = f.readline()
+            if not line:
+                time.sleep(0.5)
+                continue
+            yield line.strip()
+
+def analyze_log(log_input):
+    prompt = f"""
 You are a cybersecurity AI assistant.
 
 Analyze the following system log entry and answer in this format:
@@ -20,29 +33,43 @@ Log:
 {log_input}
 """
 
-# Run CyberGuard AI model
-result = subprocess.run(
-    ['ollama', 'run', 'cyberguard'],  # use 'llama2' if no custom model
-    input=prompt.encode(),
-    capture_output=True
-)
+    result = subprocess.run(
+        ['ollama', 'run', 'cyberguard'],
+        input=prompt.encode(),
+        capture_output=True
+    )
 
-# Decode response from model
-response = result.stdout.decode()
+    response = result.stdout.decode()
+    print("\nAI Says:\n")
+    print(response)
 
-# Print AI response
-print("\nAI Says:\n")
-print(response)
+    # Log it to file
+    with open("cyberguard_logs.txt", "a") as f:
+        f.write(f"LOG: {log_input}\nRESPONSE: {response}\n\n")
 
-# === ✅ Step 4: Save log + AI response with timestamp ===
-with open("cyberguard_logs.txt", "a") as f:
-    f.write(f"{datetime.now()} - LOG: {log_input}\nRESPONSE:\n{response}\n{'-'*50}\n")
+    # Auto-block if flagged
+    if "Suspicious: Yes" in response or "Block IP: Yes" in response:
+        match = re.search(r'from (\d+\.\d+\.\d+\.\d+)', log_input)
+        if match:
+            ip = match.group(1)
+            print(f"[!] Blocking IP: {ip}")
+            os.system(f'sudo iptables -A INPUT -s {ip} -j DROP')
 
-# === 🔒 Optional: Block IP if flagged ===
-if "Suspicious: Yes" in response or "Block IP: Yes" in response:
-    match = re.search(r'from (\d+\.\d+\.\d+\.\d+)', log_input)
-    if match:
-        ip = match.group(1)
-        print(f"[!] Blocking IP: {ip}")
-        os.system(f'sudo iptables -A INPUT -s {ip} -j DROP')
+# ---------- Main logic ----------
+def main():
+    log_found = False
+    for file in LOG_FILES:
+        if os.path.exists(file):
+            print(f"📡 Monitoring: {file}")
+            log_found = True
+            for line in follow(file):
+                if "Failed password" in line or "authentication failure" in line:
+                    analyze_log(line)
+            break
+
+    if not log_found:
+        print("❌ No supported log file found. Exiting.")
+
+if __name__ == "__main__":
+    main()
 
