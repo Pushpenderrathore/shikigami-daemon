@@ -1,14 +1,16 @@
-import subprocess
+iimport subprocess
 import re
 import os
 import time
 
+# Supported log files
 LOG_FILES = [
-    "/var/log/secure",     # For RHEL/Fedora/Arch
-    "/var/log/auth.log"    # For Debian/Ubuntu
+    "/var/log/secure",     # RHEL, CentOS, Fedora, Arch
+    "/var/log/auth.log"    # Ubuntu, Debian
 ]
 
 def follow(file_path):
+    """Tail the file live (like tail -f)"""
     with open(file_path, "r") as f:
         f.seek(0, os.SEEK_END)
         while True:
@@ -18,7 +20,13 @@ def follow(file_path):
                 continue
             yield line.strip()
 
-def analyze_log(log_input):
+def block_ip(ip):
+    """Block the IP using iptables"""
+    print(f"[!] Blocking IP: {ip}")
+    os.system(f"sudo iptables -A INPUT -s {ip} -j DROP")
+
+def analyze_log_entry(log_input):
+    """Send log input to Ollama model and return the response"""
     prompt = f"""
 You are a cybersecurity AI assistant.
 
@@ -39,32 +47,37 @@ Log:
         capture_output=True
     )
 
-    response = result.stdout.decode()
-    print("\nAI Says:\n")
-    print(response)
+    return result.stdout.decode()
 
-    # Log it to file
-    with open("cyberguard_logs.txt", "a") as f:
-        f.write(f"LOG: {log_input}\nRESPONSE: {response}\n\n")
+def parse_response(response, log_input):
+    """Check if IP should be blocked, and log it"""
+    should_block = "Suspicious: Yes" in response or "Block IP: Yes" in response
+    blocked_ips = []
 
-    # Auto-block if flagged
-    if "Suspicious: Yes" in response or "Block IP: Yes" in response:
+    if should_block:
         match = re.search(r'from (\d+\.\d+\.\d+\.\d+)', log_input)
         if match:
             ip = match.group(1)
-            print(f"[!] Blocking IP: {ip}")
-            os.system(f'sudo iptables -A INPUT -s {ip} -j DROP')
+            block_ip(ip)
+            blocked_ips.append(ip)
 
-# ---------- Main logic ----------
+    # Save log + response
+    with open("cyberguard_logs.txt", "a") as f:
+        f.write(f"LOG: {log_input}\nRESPONSE: {response}\n\n")
+
+    return blocked_ips
+
 def main():
     log_found = False
-    for file in LOG_FILES:
-        if os.path.exists(file):
-            print(f"📡 Monitoring: {file}")
+    for log_file in LOG_FILES:
+        if os.path.exists(log_file):
+            print(f"📡 Monitoring: {log_file}")
             log_found = True
-            for line in follow(file):
-                if "Failed password" in line or "authentication failure" in line:
-                    analyze_log(line)
+            for line in follow(log_file):
+                if any(keyword in line for keyword in ["Failed password", "authentication failure", "invalid user", "session opened", "sudo"]):
+                    response = analyze_log_entry(line)
+                    print("\nAI Says:\n", response)
+                    parse_response(response, line)
             break
 
     if not log_found:
