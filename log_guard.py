@@ -42,7 +42,7 @@ Log:
 """
 
     result = subprocess.run(
-        ['ollama', 'run', 'cyberguard'],
+        ['ollama', 'run', 'shikigami'],
         input=prompt.encode(),
         capture_output=True
     )
@@ -62,7 +62,7 @@ def parse_response(response, log_input):
             blocked_ips.append(ip)
 
     # Save log + response
-    with open("cyberguard_logs.txt", "a") as f:
+    with open("shikigami_logs.txt", "a") as f:
         f.write(f"LOG: {log_input}\nRESPONSE: {response}\n\n")
 
     return blocked_ips
