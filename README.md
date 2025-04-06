@@ -2,7 +2,7 @@
 
 **Shikigami AI** is an AI-powered daemon designed to monitor logs and detect suspicious activity using intelligent pattern detection.
 
-> This tool runs as a systemd service on Linux and analyzes logs using `log_guard.py` with AI-based heuristics.
+> This tool runs as a systemd service on Linux and analyzes logs using `log_guard.py` with AI-based heuristics to scan logs for malicious behavior in real-time..
 
 ---
 
