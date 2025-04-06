@@ -2,21 +2,155 @@ MIT License
 
 Copyright (c) 2025 Pushpender Singh
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights 
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-copies of the Software, and to permit persons to whom the Software is 
+Permission is hereby granted, free of charge, to any person obtaining a copy  
+of this software and associated documentation files (the "Software"), to deal  
+in the Software without restriction, including without limitation the rights  
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell  
+copies of the Software, and to permit persons to whom the Software is  
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all
+The above copyright notice and this permission notice shall be included in all  
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR  
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,  
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE  
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER  
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,  
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE  
 SOFTWARE.
+
+---
+
+## 📜 Extended License Terms and Clarifications
+
+### 🔹 1. Grant of Rights
+
+Under this license, users of the Software are granted the freedom to use the Software for any legal purpose, whether personal, educational, commercial, or otherwise. This includes, but is not limited to:
+
+- 📥 **Downloading** and installing the Software on one or more systems.
+- ✍️ **Modifying** or enhancing the Software in any manner, for personal use or redistribution.
+- 📤 **Redistributing** the original or modified Software under the same terms.
+- 💼 **Using** the Software in commercial applications or services without restriction.
+
+No monetary fee or royalty is required to use or benefit from the Software, and no prior permission or attribution beyond this license text is needed.
+
+---
+
+### 🔹 2. Freedom to Modify
+
+Users are explicitly allowed to make any modifications to the Software. This includes:
+
+- Refactoring code
+- Changing functionality
+- Integrating the Software into a larger system
+- Porting to different platforms or programming languages
+- Releasing improvements back to the community (optional but encouraged)
+
+---
+
+### 🔹 3. Open Collaboration Encouraged
+
+The author encourages developers and contributors to collaborate on the Software by submitting pull requests, sharing ideas, and building extensions. Contributions may be governed by a separate CONTRIBUTING.md guideline and should follow the community's Code of Conduct.
+
+---
+
+### 🔹 4. Limitations and Disclaimers
+
+While the Software is open for use and modification, users should understand the risks and limitations inherent in such usage:
+
+#### ➤ No Warranty:
+
+This Software is provided "as is", without warranty of any kind. The author does not guarantee:
+
+- That the Software is free of bugs or vulnerabilities.
+- That the Software will work correctly in all environments or configurations.
+- That future updates will be made.
+
+#### ➤ No Liability:
+
+Under no circumstances shall the author or any contributors be liable for:
+
+- Data loss or corruption caused by the use of the Software.
+- Security breaches resulting from improper implementation or misconfiguration.
+- Financial loss or system downtime resulting from the Software's behavior.
+
+Users are fully responsible for testing and deploying the Software in a secure and appropriate manner.
+
+---
+
+### 🔹 5. Attribution
+
+Though not legally required, it is appreciated when users:
+
+- Provide credit to the original author (`Pushpender Singh`)
+- Link back to the original repository when redistributing
+- Note changes made in forks or derivative works
+
+---
+
+### 🔹 6. Usage in Closed Source Projects
+
+The Software may be included within closed source, proprietary, or commercial systems. There is **no obligation** to open source derivative works, though doing so benefits the broader community.
+
+However, the use of this Software in such projects must still comply with the license terms — including maintaining the license text and copyright.
+
+---
+
+### 🔹 7. Patent Rights
+
+The MIT License does not grant patent rights. If the Software uses algorithms, ideas, or methods that may be subject to patents in certain jurisdictions, users are responsible for ensuring compliance with applicable intellectual property laws. The author does not claim or guarantee that the Software is free of third-party patent claims.
+
+---
+
+### 🔹 8. Use in Security-Critical Environments
+
+This Software may be used in environments where security is a concern, including intrusion detection, malware analysis, and firewall systems. However:
+
+- ⚠️ Proper vetting, testing, and understanding of the AI-based components are crucial.
+- ⚠️ The author does not guarantee the prevention of cyber-attacks, unauthorized access, or data loss.
+- ⚠️ Misuse or misinterpretation of logs or AI models may lead to incorrect threat identification.
+
+By using the Software in critical environments, you acknowledge that full responsibility lies with you, the implementer.
+
+---
+
+### 🔹 9. Software Evolution
+
+The author may continue to develop and maintain the Software under this license. Users are encouraged to pull updates, report issues, and suggest features via the GitHub repository. Forking for independent development is also encouraged, provided this license continues to be honored.
+
+---
+
+### 🔹 10. License Compatibility
+
+This license is compatible with:
+
+- GNU GPL
+- Apache 2.0
+- BSD Licenses
+- Mozilla Public License
+
+This means code from this project may be combined with other software under those licenses, provided the combined distribution honors all license obligations.
+
+---
+
+## ✅ Summary
+
+You are **free** to use, study, share, and modify this software as long as:
+
+- The original license is retained.
+- You take responsibility for how you use it.
+- You understand there is **no warranty or liability**.
+
+This promotes freedom, innovation, and collaboration — the core goals of open source.
+
+---
+
+## 🙌 Final Note
+
+If you build something amazing with this Software, consider sharing it! Contributing back not only improves the project but strengthens the community. And if you're using it in a product, a mention or star on GitHub is always appreciated!
+
+For questions, suggestions, or business inquiries, contact:
+
+📧 pushpender.shikigami@proton.me
 
