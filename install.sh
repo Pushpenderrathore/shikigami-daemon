@@ -22,3 +22,5 @@ cat /var/log/shikigami.log
 
 # Test detection (e.g., brute force, anomaly patterns)
 # Try SSH brute force, or simulate a log entry that matches a pattern from your .modelfile. If detected, it will be logged and optionally blocked
+# 🔐 Permissions:
+#Shikigami requires root permissions to monitor logs and optionally block IPs. It is recommended to sandbox and audit regularly.
