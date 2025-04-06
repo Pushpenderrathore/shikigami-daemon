@@ -1,0 +1,16 @@
+[Unit]
+Description=Shikigami AI - AI-Powered Intrusion Detection & Protection
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/shikigami/shikigami.sh
+WorkingDirectory=/opt/shikigami
+RemainAfterExit=true
+StandardOutput=append:/var/log/shikigami.log
+StandardError=append:/var/log/shikigami.log
+User=root
+
+[Install]
+WantedBy=multi-user.target
+
