@@ -40,14 +40,18 @@ Analyze the following system log entry and answer in this format:
 Log:
 {log_input}
 """
+    try:
+        result = subprocess.run(
+            ['ollama', 'run', 'shikigami'],
+            input=prompt.encode(),
+            capture_output=True,
+            timeout=10  # optional: avoid freezing forever
+        )
+        return result.stdout.decode()
+    except Exception as e:
+        print(f"[!] Ollama Error: {e}")
+        return "Suspicious: No\nWhy: Ollama unavailable\nBlock IP: No\nSeverity: Low"
 
-    result = subprocess.run(
-        ['ollama', 'run', 'shikigami'],
-        input=prompt.encode(),
-        capture_output=True
-    )
-
-    return result.stdout.decode()
 
 def parse_response(response, log_input):
     """Check if IP should be blocked, and log it"""
@@ -80,9 +84,12 @@ def main():
                     parse_response(response, line)
             break
 
-    if not log_found:
-        print("❌ No supported log file found. Exiting.")
-
-if __name__ == "__main__":
-    main()
-
+        if not log_found:
+            print("❌ No supported log file found. Waiting...")
+        while True:
+            for log_file in LOG_FILES:
+                if os.path.exists(log_file):
+                    print(f"📡 Log appeared: {log_file}")
+                    main()  # re-run main to start monitoring
+                    return
+            time.sleep(30)
