@@ -5,7 +5,7 @@ import time
 
 # Simulated log file (use your own test log on Windows)
 LOG_FILES = [
-    "C:\\Users\\pushp\\OneDrive\\Desktop\\test_log.log"
+    "C:\\Users\\pushp\\OneDrive\\Desktop\\shikigami-daemon\\test_log.log"
 ]
 
 def follow(file_path):
@@ -27,7 +27,7 @@ def analyze_log_entry(log_input):
     prompt = f"""
 You are a cybersecurity AI assistant.
 
-Analyze the following system log entry and answer in this format:
+Analyze the following system log entry and answer in this format in 60 seconds:
 
 1. Suspicious (Yes/No):
 2. Why:
@@ -39,10 +39,10 @@ Log:
 """
     try:
         result = subprocess.run(
-            ['ollama', 'run', 'shikigami'],
+            ['ollama', 'run', 'llama2'],
             input=prompt.encode(),
             capture_output=True,
-            timeout=10
+            timeout=180
         )
         return result.stdout.decode()
     except Exception as e:
