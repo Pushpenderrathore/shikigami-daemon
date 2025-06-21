@@ -9,5 +9,40 @@ Why: There is no indication that the IP address of the attempted login should be
 3. Severity (Low, Medium, High, Critical): Medium
 Why: While a failed password attempt for the root user is not necessarily critical, it can still represent a potential security risk if the user attempting the login has malicious intentions. Therefore, it is considered a medium-level severity event.
 
-
 --------------------------------------------------
+LOG: Jun 21 12:34:56 server sshd[12345]: Failed password for root from 192.168.1.99 port 2222 ssh2
+RESPONSE: 
+
+LOG: Jun 21 12:34:56 server sshd[12345]: Failed password for root from 192.168.1.99 port 2222 ssh2
+RESPONSE: 
+
+LOG: Jun 21 12:34:56 server sshd[12345]: Failed password for root from 192.168.1.99 port 2222 ssh2
+RESPONSE: Suspicious: No
+Why: Ollama unavailable
+Block IP: No
+Severity: Low
+
+LOG: Jun 21 12:34:56 server sshd[12345]: Failed password for root from 192.168.1.99 port 2222 ssh2
+RESPONSE: Suspicious: No
+Why: Ollama unavailable
+Block IP: No
+Severity: Low
+
+LOG: Jun 21 12:34:56 server sshd[12345]: Failed password for root from 192.168.1.99 port 2222 ssh2
+RESPONSE: Suspicious: No
+Why: Ollama unavailable
+Block IP: No
+Severity: Low
+
+LOG: Jun 21 12:34:56 server sshd[12345]: Failed password for root from 192.168.1.99 port 2222 ssh2
+RESPONSE: 
+Suspicious (Yes): The log entry indicates an attempt to access the server using an invalid password, which could be a sign of a brute-force attack or unauthorized access attempt.
+
+Why: The user 'root' has failed to login with an incorrect password, indicating that someone is attempting to gain unauthorized access to the server.
+
+Should Block IP (Yes): Yes, the IP address 192.168.1.99 should be blocked to prevent further unauthorized access attempts.
+
+Severity (High): This log entry indicates a high severity security threat as an unauthorized user is attempting to gain access to the server, which could lead to data breaches or other malicious activities.
+
+
+
