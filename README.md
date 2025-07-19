@@ -1,3 +1,8 @@
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![Last Commit](https://img.shields.io/github/last-commit/Pushpenderrathore/LUKS2-nuke) 
+![Repo Size](https://img.shields.io/github/repo-size/Pushpenderrathore/tor-browser)
+
+
 # 🧠 Shikigami AI - Intrusion Detection & Protection
 
 **Shikigami AI** is an AI-powered daemon designed to monitor logs and detect suspicious activity using intelligent pattern detection.
